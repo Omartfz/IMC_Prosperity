@@ -1,0 +1,6 @@
+Ce que contient le template
+ProductTrader (classe de base, 19 méthodes) fournit tout le nécessaire pour chaque produit : parsing de l'orderbook avec bids/asks triés, calcul du wall mid et du mid classique, gestion sécurisée des volumes (impossible de dépasser les position limits), méthodes bid()/ask() avec clamp automatique, take_asks_below() et take_bids_above() pour prendre la liquidité, persistance via td_load()/td_save(), calcul d'EMA intégré, et détection de trader informé.
+3 traders exemple prêts à être adaptés : StaticPriceTrader pour un produit à prix fixe (style Rainforest Resin), RandomWalkTrader pour un produit en random walk (style Kelp), et SpreadTrader pour de l'arbitrage ETF/basket.
+Trader (point d'entrée) orchestre tout — il suffit d'ajouter une entrée dans PRODUCT_TRADERS pour activer un nouveau produit.
+Comment l'utiliser quand la compétition commence
+Le workflow sera simple : quand un nouveau produit apparaît, tu crées une sous-classe de ProductTrader, tu implémentes get_orders(), et tu l'enregistres dans le dictionnaire PRODUCT_TRADERS. Le template gère le reste.
