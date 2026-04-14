@@ -27,18 +27,20 @@ import os
 # =============================================================================
 
 # Adapter ce chemin si nécessaire
-DATA_DIR = os.path.dirname(os.path.abspath(__file__))  # dossier du script
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Round1_data")
 
 def load_data(data_dir=DATA_DIR):
     """Charge et concatène les fichiers prices et trades des 2 jours."""
 
     prices_files = [
-        os.path.join(data_dir, "prices_round_0_day_-2.csv"),
-        os.path.join(data_dir, "prices_round_0_day_-1.csv"),
+        os.path.join(data_dir, "prices_round_1_day_-2.csv"),
+        os.path.join(data_dir, "prices_round_1_day_-1.csv"),
+        os.path.join(data_dir, "prices_round_1_day_0.csv"),
     ]
     trades_files = [
-        os.path.join(data_dir, "trades_round_0_day_-2.csv"),
-        os.path.join(data_dir, "trades_round_0_day_-1.csv"),
+        os.path.join(data_dir, "trades_round_1_day_-2.csv"),
+        os.path.join(data_dir, "trades_round_1_day_-1.csv"),
+        os.path.join(data_dir, "trades_round_1_day_0.csv"),
     ]
 
     prices_list, trades_list = [], []
@@ -303,7 +305,7 @@ if __name__ == "__main__":
 
     # 2. Dashboard détaillé par produit
     for product in products:
-        for day in [-2, -1]:
+        for day in [0]:
             pp = prices[(prices["product"] == product) & (prices["day"] == day)]
             if len(pp) == 0:
                 continue
